@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    퀴즈목록
+    <br>
+    <table border="3">
+        <tr>
+            <th>ID</th>
+            <th>작성자</th>
+            <th>문제</th>
+            <th>OX</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        <tr th:each="quiz : ${quizDto}" th:object="${quiz}">
+            <td th:text="*{id}"></td>
+            <td th:text="*{text}"></td>
+            <td th:text="*{user}"></td>
+            <td>
+                <span th:if="*{o}">O</span>
+                <span th:if="*{x}">X</span>
+            </td>
+            <td>
+                <form th:action="@{/update}" method="get">
+                    <input type="hidden" name="updateId" th:value="*{id}">
+                    <input type="submit" value="수정">
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/delete}" method="post">
+                    <input type="hidden" name="deleteId" th:value="*{id}">
+                    <input type="submit" value="삭제">
+                </form>
+            </td>
+        </tr>
+    </table>
+    <a th:href="@{/list}">메인으로 가기</a>
+
+
+</body>
+</html>

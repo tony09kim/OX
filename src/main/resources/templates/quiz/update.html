@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/update}" method="post" th:object="${quizDto}">
+    <div>
+        <label for="ID">ID : [[*{id}]] </label>
+    </div>
+    <div>
+        <label for="user">작성자</label>
+        <input type="text" name="user" th:field="*{user}">
+    </div>
+    <div>
+        <label for="text">내용</label>
+        <input type="text" name="age" th:field="*{text}">
+    </div>
+    <div>
+        <input type="checkbox" id="o" name="o" th:field="${quizDto.o}"  class="form-check-input">
+        <label for="o" class="form-check-label">O</label>
+    </div>
+    <div>
+        <input type="checkbox" id="x" name="x" th:field="${quizDto.x}" class="form-check-input">
+        <label for="x" class="form-check-label">X</label>
+    </div>
+    <input type="hidden" th:field="*{id}">
+    <input type="submit" value="등록">
+</form>
+<a th:href="@{/list}">메인으로 가기</a>
+</body>
+</html>
